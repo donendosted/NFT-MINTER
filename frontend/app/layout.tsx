@@ -6,8 +6,8 @@ import { Navbar } from '@/components/layout/Navbar';
 import { BottomNav } from '@/components/layout/BottomNav';
 
 export const metadata: Metadata = {
-  title: 'NFT Bazar — Stellar NFT Marketplace',
-  description: 'Buy, sell and trade NFTs on the Stellar network with automatic royalty splitting.',
+  title: 'NFT MINTER',
+  description: 'NFT MINTER - Create and manage your NFT collection',
   icons: {
     icon: '/favicon.ico',
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-dark-300 text-white min-h-screen">
+      <body className="bg-silver-950 text-silver-50 min-h-screen">
         <QueryProvider>
           <Navbar />
           <main className="pb-20 lg:pb-0">{children}</main>

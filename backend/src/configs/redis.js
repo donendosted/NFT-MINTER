@@ -1,8 +1,11 @@
-const { Redis } = require('@upstash/redis');
+// Mock Redis client - disabled for development
+const mockRedis = {
+  get: () => Promise.resolve(null),
+  set: () => Promise.resolve('OK'),
+  del: () => Promise.resolve(0),
+  flushall: () => Promise.resolve('OK'),
+  ping: () => Promise.resolve('PONG'),
+  quit: () => Promise.resolve('OK'),
+};
 
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN,
-});
-
-module.exports = redis;
+module.exports = mockRedis;

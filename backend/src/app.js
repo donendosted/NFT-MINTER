@@ -14,8 +14,8 @@ const {
   analyticsRoutes,
   mintRoutes,
   uploadRoutes,
-  sorobanMintRoutes,
-  sorobanMarketplaceRoutes,
+  blockchainMintRoutes,
+  blockchainMarketplaceRoutes,
 } = require('./routes');
 
 const app = express();
@@ -46,8 +46,8 @@ app.use('/royalties', royaltyRoutes);
 app.use('/analytics', analyticsRoutes);
 app.use('/mint', mintRoutes);
 app.use('/upload', uploadRoutes);
-app.use('/blockchain/mint/nft', sorobanMintRoutes);
-app.use('/blockchain/marketplace', sorobanMarketplaceRoutes);
+app.use('/blockchain/mint/nft', blockchainMintRoutes);
+app.use('/blockchain/marketplace', blockchainMarketplaceRoutes);
 
 app.use((_req, res) => {
   res.status(404).json({
