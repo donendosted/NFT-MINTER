@@ -1,11 +1,11 @@
-name: Build Frontend
+name: Deploy to Render and Netlify
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -14,14 +14,40 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
+        cache: 'pnpm'
+        
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
         
     - name: Install Dependencies
-      run: |
-        cd frontend
-        npm install
+      run: pnpm install
         
+    - name: Build Backend
+      run: pnpm -F backend build
+      shell: bash
+      
     - name: Build Frontend
-      run: |
-        cd frontend
-        npm run build
+      run: pnpm -F frontend build
+      shell: bash
+      
+    - name: Deploy to Render (Backend)
+      uses: jacecasta/render-deploy@v1.3
+      with:
+        service-type: web_server
+        service-name: nft-minter-backend
+        branch: main
+      env:
+        RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        
+    - name: Deploy to Netlify (Frontend)
+      uses: nwtgck/actions-netlify@v3.0
+      with:
+        publish-dir: ./frontend/.next
+        production-branch: main
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Deploy from GitHub Actions"
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
