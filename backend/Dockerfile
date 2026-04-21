@@ -3,13 +3,15 @@ RUN apk add --no-cache openssl
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm ci --only=production
+COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm
+
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 
-RUN npx prisma generate
+RUN pnpm prisma generate
 
-EXPOSE 3000
+EXPOSE 10000
 
 CMD ["node", "src/server.js"]
