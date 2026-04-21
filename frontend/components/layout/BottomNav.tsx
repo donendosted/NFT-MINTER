@@ -84,7 +84,7 @@ export function BottomNav() {
 
       {/* More sheet */}
       {showMore && (
-        <div className="fixed bottom-16 left-0 right-0 z-50 lg:hidden bg-dark-200 border-t border-white/10 rounded-t-2xl pb-2">
+        <div className="fixed bottom-16 left-0 right-0 z-50 lg:hidden bg-silver-900 border-t border-silver-600/20 rounded-t-2xl pb-2">
           <div className="flex items-center justify-center pt-2 pb-3">
             <div className="w-8 h-1 bg-white/20 rounded-full" />
           </div>
@@ -97,7 +97,7 @@ export function BottomNav() {
                 onClick={() => setShowMore(false)}
                 className={cn(
                   'flex items-center gap-4 px-6 py-3.5 transition-colors',
-                  isActive ? 'text-primary-400' : 'text-white/60 hover:text-white'
+                  isActive ? 'text-slate-400' : 'text-silver-400 hover:text-silver-50'
                 )}
               >
                 {tab.icon}
@@ -112,7 +112,7 @@ export function BottomNav() {
       )}
 
       {/* Bottom bar */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-dark-200/95 backdrop-blur-xl border-t border-white/5"
+      <nav className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-silver-900/95 backdrop-blur-xl border-t border-white/5"
         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
         <div className="flex items-center justify-around h-16">
@@ -129,8 +129,8 @@ export function BottomNav() {
                       ? 'text-accent-400'
                       : 'text-accent-500/70'
                     : isActive
-                    ? 'text-primary-400'
-                    : 'text-white/40'
+                    ? 'text-slate-400'
+                    : 'text-silver-50/40'
                 )}
               >
                 {tab.accent ? (
@@ -145,7 +145,7 @@ export function BottomNav() {
                 )}
                 <span className="text-[10px] font-medium">{tab.label}</span>
                 {isActive && !tab.accent && (
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-primary-500 rounded-full" />
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-slate-700 rounded-full" />
                 )}
               </Link>
             );
@@ -156,7 +156,7 @@ export function BottomNav() {
             onClick={() => setShowMore((v) => !v)}
             className={cn(
               'relative flex flex-col items-center justify-center gap-0.5 flex-1 h-full transition-colors',
-              isMoreActive || showMore ? 'text-primary-400' : 'text-white/40'
+              isMoreActive || showMore ? 'text-slate-400' : 'text-silver-50/40'
             )}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -164,7 +164,7 @@ export function BottomNav() {
             </svg>
             <span className="text-[10px] font-medium">More</span>
             {(isMoreActive || showMore) && (
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-primary-500 rounded-full" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-slate-700 rounded-full" />
             )}
           </button>
         </div>
