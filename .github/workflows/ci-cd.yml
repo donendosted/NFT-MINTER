@@ -25,14 +25,14 @@ jobs:
       run: pnpm install
         
     - name: Build Backend
-      run: pnpm -F backend build
+      run: cd backend && pnpm run build
       shell: bash
       
     - name: Build Frontend
-      run: pnpm -F frontend build
+      run: cd frontend && pnpm build
       shell: bash
       
-    - name: Deploy to Render (Backend)
+    - name: Deploy to Render
       uses: jacecasta/render-deploy@v1.3
       with:
         service-type: web_server
@@ -41,13 +41,14 @@ jobs:
       env:
         RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
         
-    - name: Deploy to Netlify (Frontend)
+    - name: Deploy to Netlify
       uses: nwtgck/actions-netlify@v3.0
       with:
         publish-dir: ./frontend/.next
         production-branch: main
         github-token: ${{ secrets.GITHUB_TOKEN }}
         deploy-message: "Deploy from GitHub Actions"
+        overwrites-pull-request-comment: true
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
