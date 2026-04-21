@@ -6,8 +6,8 @@ const royaltyRoutes = require('./royaltyRoutes');
 const analyticsRoutes = require('./analyticsRoutes');
 const mintRoutes = require('./mintRoutes');
 const uploadRoutes = require('./uploadRoutes');
-const sorobanMintRoutes = require('./sorobanMintRoutes');
-const sorobanMarketplaceRoutes = require('./sorobanMarketplaceRoutes');
+const blockchainMintRoutes = require('./blockchainMintRoutes');
+const blockchainMarketplaceRoutes = require('./blockchainMarketplaceRoutes');
 
 module.exports = {
   authRoutes,
@@ -18,6 +18,6 @@ module.exports = {
   analyticsRoutes,
   mintRoutes,
   uploadRoutes,
-  sorobanMintRoutes,
-  sorobanMarketplaceRoutes,
+  blockchainMintRoutes,
+  blockchainMarketplaceRoutes,
 };

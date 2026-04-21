@@ -59,12 +59,12 @@ export const api = {
   soroban: {
     mint: {
       build: (walletAddress: string, name: string, imageUrl: string) =>
-        fetcher<ApiResponse<{ transactionXDR: string; contractId: string; method: string; mintRequestId: string; requiresSignature: boolean; signerAddress: string }>>('/soroban/mint/build', {
+        fetcher<ApiResponse<{ transactionXDR: string; contractId: string; method: string; mintRequestId: string; requiresSignature: boolean; signerAddress: string }>>('/blockchain/mint/nft/build', {
           method: 'POST',
           body: JSON.stringify({ walletAddress, name, imageUrl }),
         }),
        submit: (signedTxXDR: string, mintRequestId: string, walletAddress: string, name: string, imageUrl: string) =>
-        fetcher<ApiResponse<{ nft: NFT; txHash: string; explorerUrl: string; gasFeeLumens?: string; gasFeeStroops?: number }>>('/soroban/mint/submit', {
+        fetcher<ApiResponse<{ nft: NFT; txHash: string; explorerUrl: string; gasFeeLumens?: string; gasFeeStroops?: number }>>('/blockchain/mint/nft/submit', {
           method: 'POST',
           body: JSON.stringify({ signedTxXDR, mintRequestId, walletAddress, name, imageUrl }),
         }),
@@ -72,24 +72,24 @@ export const api = {
     marketplace: {
       list: {
         build: (nftContractId: string, sellerAddress: string, tokenId: number, priceInStroops: string) =>
-          fetcher<ApiResponse<{ transactionXDR: string; contractId: string; method: string; listingRequestId: string; requiresSignature: boolean; signerAddress: string }>>('/soroban/marketplace/list/build', {
+          fetcher<ApiResponse<{ transactionXDR: string; contractId: string; method: string; listingRequestId: string; requiresSignature: boolean; signerAddress: string }>>('/blockchain/marketplace/list/build', {
             method: 'POST',
             body: JSON.stringify({ nftContractId, sellerAddress, tokenId, priceInStroops }),
           }),
         submit: (signedTxXDR: string, listingRequestId: string, nftContractId: string, tokenId: number, sellerAddress: string, priceInStroops: string, txHash: string) =>
-          fetcher<ApiResponse<Listing>>('/soroban/marketplace/list/submit', {
+          fetcher<ApiResponse<Listing>>('/blockchain/marketplace/list/submit', {
             method: 'POST',
             body: JSON.stringify({ signedTxXDR, listingRequestId, nftContractId, tokenId, sellerAddress, priceInStroops, txHash }),
           }),
       },
       buy: {
         build: (nftContractId: string, buyerAddress: string, tokenId: number) =>
-          fetcher<ApiResponse<{ transactionXDR: string; contractId: string; method: string; buyRequestId: string; requiresSignature: boolean; signerAddress: string }>>('/soroban/marketplace/buy/build', {
+          fetcher<ApiResponse<{ transactionXDR: string; contractId: string; method: string; buyRequestId: string; requiresSignature: boolean; signerAddress: string }>>('/blockchain/marketplace/buy/build', {
             method: 'POST',
             body: JSON.stringify({ nftContractId, buyerAddress, tokenId }),
           }),
         submit: (signedTxXDR: string, buyRequestId: string, nftContractId: string, tokenId: number, buyerAddress: string, price: string, txHash: string) =>
-          fetcher<ApiResponse<Sale>>('/soroban/marketplace/buy/submit', {
+          fetcher<ApiResponse<Sale>>('/blockchain/marketplace/buy/submit', {
             method: 'POST',
             body: JSON.stringify({ signedTxXDR, buyRequestId, nftContractId, tokenId, buyerAddress, price, txHash }),
           }),

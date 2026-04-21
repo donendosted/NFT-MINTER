@@ -46,8 +46,8 @@ app.use('/royalties', royaltyRoutes);
 app.use('/analytics', analyticsRoutes);
 app.use('/mint', mintRoutes);
 app.use('/upload', uploadRoutes);
-app.use('/soroban/mint', sorobanMintRoutes);
-app.use('/soroban/marketplace', sorobanMarketplaceRoutes);
+app.use('/blockchain/mint/nft', sorobanMintRoutes);
+app.use('/blockchain/marketplace', sorobanMarketplaceRoutes);
 
 app.use((_req, res) => {
   res.status(404).json({
