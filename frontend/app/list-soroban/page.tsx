@@ -134,7 +134,7 @@ export default function ListNFTSorobanPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-2">
-          <h1 className="text-3xl font-bold text-white">List NFT for Sale</h1>
+          <h1 className="text-3xl font-bold text-white">Sell</h1>
           <span className="px-3 py-1 bg-primary-500/20 text-primary-400 text-xs rounded-full font-medium">Soroban</span>
         </div>
         <p className="text-white/50">Select an NFT from your collection and set a price. The listing will be recorded on-chain via Soroban contract.</p>

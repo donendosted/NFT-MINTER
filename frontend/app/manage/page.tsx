@@ -35,7 +35,7 @@ export default function ManagePage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-      <h1 className="text-2xl font-bold text-white mb-6">Manage</h1>
+      <h1 className="text-2xl font-bold text-white mb-6">Dashboard</h1>
 
       {/* Tab switcher */}
       <div className="flex gap-1 mb-6 bg-slate-900 p-1 rounded-xl w-fit">
@@ -47,7 +47,7 @@ export default function ManagePage() {
               : 'text-slate-400 hover:text-white'
           }`}
         >
-          Royalties
+          Earnings
         </button>
         <button
           onClick={() => setTab('analytics')}
@@ -57,7 +57,7 @@ export default function ManagePage() {
               : 'text-slate-400 hover:text-white'
           }`}
         >
-          Analytics
+          Stats
         </button>
       </div>
 

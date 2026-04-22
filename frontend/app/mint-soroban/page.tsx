@@ -178,7 +178,7 @@ export default function MintPageSoroban() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-2">
-          <h1 className="text-3xl font-bold text-white">Create Your NFT</h1>
+          <h1 className="text-3xl font-bold text-white">Mint</h1>
           <span className="px-3 py-1 bg-primary-500/20 text-primary-400 text-xs rounded-full font-medium">Soroban</span>
         </div>
         <p className="text-white/50">Upload an image and mint a real NFT on Stellar testnet via Soroban contract</p>

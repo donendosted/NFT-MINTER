@@ -10,7 +10,7 @@ const navLinks = [
   { href: '/my-nfts', label: 'My NFTs' },
   { href: '/mint-soroban', label: 'Mint' },
   { href: '/list-soroban', label: 'Sell' },
-  { href: '/manage', label: 'Manage' },
+  { href: '/manage', label: 'Dashboard' },
 ];
 
 export function Navbar() {

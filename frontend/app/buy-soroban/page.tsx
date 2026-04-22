@@ -163,7 +163,7 @@ export default function BuyNFTSorobanPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-2">
-          <h1 className="text-3xl font-bold text-white">Buy NFTs</h1>
+          <h1 className="text-3xl font-bold text-white">Buy</h1>
           <span className="px-3 py-1 bg-primary-500/20 text-primary-400 text-xs rounded-full font-medium">Soroban</span>
         </div>
         <p className="text-white/50">Browse listed NFTs and purchase them using on-chain Soroban contracts. Transactions are recorded on Stellar testnet.</p>
