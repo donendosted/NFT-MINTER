@@ -1,4 +1,4 @@
-name: Deploy to Render and Netlify
+name: Deploy to Render and Vercel
 
 on:
   push:
@@ -41,14 +41,10 @@ jobs:
       env:
         RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
         
-    - name: Deploy to Netlify
-      uses: nwtgck/actions-netlify@v3.0
+    - name: Deploy to Vercel
+      uses: amondnet/vercel-action@v25
       with:
-        publish-dir: ./frontend/.next
-        production-branch: main
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        deploy-message: "Deploy from GitHub Actions"
-        overwrites-pull-request-comment: true
-      env:
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        working-directory: ./frontend
