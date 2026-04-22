@@ -18,12 +18,15 @@ jobs:
     - name: Install pnpm
       run: npm install -g pnpm
         
-    - name: Install Dependencies
-      run: pnpm install
+    - name: Install Backend Dependencies
+      run: cd backend && pnpm install
         
     - name: Build Backend
       run: cd backend && pnpm run build
       shell: bash
+      
+    - name: Install Frontend Dependencies
+      run: cd frontend && pnpm install
       
     - name: Build Frontend
       run: cd frontend && pnpm build
