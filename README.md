@@ -1,114 +1,200 @@
-# NFT Bazar - Decentralized NFT Marketplace
+# NFT MINTER
 
-A decentralized NFT marketplace on the Stellar network with automatic royalty splitting for creators.
+> Decentralized NFT marketplace on the Stellar network with automatic royalty splitting for creators.
 
-## Overview
+**Live Demo:** https://nft-minter-seven-gamma.vercel.app
 
-This repository contains the NFT Bazar application with:
-- **Frontend**: Next.js 14 application
-- **Backend**: Express.js API server
-- **Contracts**: Soroban smart contracts on Stellar blockchain
-- **CI/CD**: GitHub Actions pipeline for automated testing, building, and deployment
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/donendosted/NFT-MINTER)
 
-## Repository Structure
+---
+
+## Screenshots
+
+### Mobile Responsive View
+
+![Mobile View](https://images.unsplash.com/photo-1618000775193-194f42c5b84f)
+
+---
+
+## Deployment
+
+- **Frontend**: Auto-deployed to Vercel on every push to `main`
+- **Backend**: Auto-deployed to Render on every push to `main`
+
+### CI/CD Pipeline
+
+[![CI/CD Pipeline](https://github.com/donendosted/NFT-MINTER/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/donendosted/NFT-MINTER/actions)
+
+---
+
+## Features
+
+- **Browse NFTs** — Discover and filter NFTs listed on the marketplace
+- **Mint NFTs** — Create new NFTs with custom names and images
+- **List for Sale** — Set a price and list your NFT on the marketplace
+- **Buy NFTs** — Purchase NFTs directly from other users
+- **Automatic Royalties** — 10% royalty on every resale, split between creator (50%), stakers (30%), and treasury (20%)
+- **Wallet Integration** — Connect via Freighter wallet (Stellar ecosystem)
+- **Analytics Dashboard** — View volume charts, top sales, and market statistics
+- **Mobile-First Design** — Fully responsive UI with bottom navigation
+
+---
+
+## Tech Stack
+
+### Frontend
+
+- **Next.js 14** — React framework with App Router
+- **TypeScript** — Type-safe codebase
+- **Tailwind CSS** — Utility-first styling
+- **React Query** — Server state management & caching
+- **Zustand** — Client-side wallet state
+- **Recharts** — Analytics charts
+- **Framer Motion** — Smooth animations
+
+### Backend
+
+- **Express.js** — REST API server
+- **Prisma** + **PostgreSQL** — Relational data (users, NFTs, listings, sales)
+- **JWT** — Authentication
+
+### Blockchain
+
+- **Stellar Testnet** — Soroban smart contracts
+- **Freighter** — Wallet connection
+- **@stellar/stellar-sdk** — Backend Horizon/RPC integration
+
+---
+
+## Smart Contracts (Soroban)
+
+| Contract | Address (Testnet) |
+|----------|-------------------|
+| Payment Token | `CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC` |
+| RoyaltyPool | `CA32HYDWNV25UIQK5VK5CCWSITNA3LQ4FSO7TCSRAPG22ZEB5NMDKYW6` |
+| NFTCollection | `CCJBHSRDMMTLQ67RL2LH2RWHGQYUN5MKYBM7R43LYGIIIBXZ5NTTF2Z2` |
+| Marketplace | `CATJUTMPLDEQY323QONFOZRTRQHLTEH5RTN52JUICTD52AT2TQD6JDYD` |
+
+### User-Pays-Gas Model
+
+The platform implements a **user-pays-gas** model where:
+
+- **Users pay gas fees** for all operations (minting, listing, buying)
+- **No admin secrets** are stored in the backend
+- **Two-step transaction flow**:
+  1. Backend builds unsigned transaction
+  2. User signs with Freighter wallet and pays gas
+  3. Backend submits signed transaction
+
+This ensures users have full control over their transactions and gas spending.
+
+### Royalty Split (10% of each sale)
+
+| Recipient | Share |
+|-----------|-------|
+| Creator | 50% |
+| Stakers | 30% |
+| Treasury | 20% |
+
+---
+
+## Architecture
 
 ```
-NFT_BAZAR/
-├── backend/              # Express.js backend API
-├── frontend/             # Next.js 14 frontend application
-├── contracts/            # Soroban smart contracts (Rust)
-│   ├── nft_collection/   # NFT collection contract
-│   ├── royalty_pool/     # Royalty distribution contract
-│   └── marketplace/      # NFT marketplace contract
-├── .github/              # GitHub Actions workflows
-│   └── workflows/
-│       └── ci-cd.yml     # CI/CD pipeline definition
-├── backend/.env.example  # Backend environment variables template
-├── frontend/.env.example # Frontend environment variables template
-└── DEPLOYMENT_GUIDE.md   # Detailed contract deployment instructions
+frontend/          Next.js 14 (Vercel)
+backend/           Express API (Render)
+postgresql/        PostgreSQL — users, NFTs, listings, sales
 ```
 
-## Setup Instructions
+---
 
-### 1. Environment Configuration
+## Getting Started
 
-Copy the example environment files and fill in your values:
+### Prerequisites
+
+- Node.js 18+
+- PostgreSQL (Neon/Render) or local Postgres
+- Freighter wallet (browser extension)
+
+### Backend Setup
 
 ```bash
-# Backend
-cp backend/.env.example backend/.env
-# Edit backend/.env with your actual values
-
-# Frontend
-cp frontend/.env.example frontend/.env.local
-# Edit frontend/.env.local with your actual values
-```
-
-### 2. Contract Deployment
-
-Before running the application, you need to deploy the Soroban contracts to Stellar testnet:
-
-1. Follow the detailed instructions in `DEPLOYMENT_GUIDE.md`
-2. Update the contract IDs in `backend/.env` with your deployed contract addresses:
-   - `NFT_COLLECTION_ID`
-   - `MARKETPLACE_ID`
-   - `ROYALTY_POOL_ID`
-   - `PAYMENT_TOKEN_ID`
-
-### 3. Local Development
-
-```bash
-# Backend
 cd backend
+cp .env.example .env
+# Fill in your DATABASE_URL and contract addresses
 npm install
+npx prisma db push
 npm run dev
+```
 
-# Frontend (in another terminal)
+### Frontend Setup
+
+```bash
 cd frontend
+cp .env.example .env.local
+# NEXT_PUBLIC_API_URL=http://localhost:5000
 npm install
 npm run dev
 ```
 
-## CI/CD Pipeline
+### Environment Variables
 
-This repository includes a GitHub Actions workflow that automates:
+**Backend (`backend/.env`):**
 
-1. **Testing**: Runs backend and frontend tests on push/pull request
-2. **Building**: Creates Docker images for backend and frontend
-3. **Deployment**: 
-   - Backend deployed to Render
-   - Frontend deployed to Vercel
+```
+DATABASE_URL=           # PostgreSQL connection string
+JWT_SECRET=           # Your JWT secret
+STELLAR_HORIZON_URL=https://horizon-testnet.stellar.org
+STELLAR_RPC_URL=https://soroban-testnet.stellar.org
+NFT_COLLECTION_ID=    # Your NFT Collection contract ID
+MARKETPLACE_ID=     # Your Marketplace contract ID
+ROYALTY_POOL_ID=    # Your Royalty Pool contract ID
+PAYMENT_TOKEN_ID=   # USDC or your token
+```
 
-### Required Secrets
+**Frontend (`frontend/.env.local`):**
 
-To enable the CI/CD pipeline, add these secrets to your GitHub repository:
+```
+NEXT_PUBLIC_API_URL=https://your-backend-url.onrender.com
+NEXT_PUBLIC_NETWORK=testnet
+```
 
-- `DOCKER_USERNAME`: Docker Hub username
-- `DOCKER_PASSWORD`: Docker Hub password or access token
-- `RENDER_API_KEY`: Render API key
-- `RENDER_BACKEND_SERVICE_ID`: Your backend service ID on Render
-- `VERCEL_TOKEN`: Vercel access token
-- `VERCEL_ORG_ID`: Vercel organization ID
-- `VERCEL_PROJECT_ID`: Vercel project ID
+---
 
-## API Endpoints
+## API Routes
 
-### Soroban Mint Routes
-- `POST /soroban/mint/build` - Build unsigned mint transaction
-- `POST /soroban/mint/submit` - Submit signed mint transaction
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/nfts` | List all NFTs (filterable) |
+| GET | `/nfts/owner/:address` | Get NFTs by owner |
+| GET | `/nfts/:contract/:tokenId` | Get NFT details |
+| POST | `/blockchain/mint/nft/build` | Build mint transaction (user signs) |
+| POST | `/blockchain/mint/nft/submit` | Submit signed mint transaction |
+| GET | `/listings` | List active listings |
+| POST | `/listings` | Create a listing |
+| DELETE | `/listings/:id` | Cancel a listing |
+| GET | `/sales` | Recent sales |
+| GET | `/royalties/:address` | Claimable royalties |
+| GET | `/analytics/volume` | Volume analytics |
+| GET | `/analytics/stats` | Market statistics |
 
-### Soroban Marketplace Routes
-- `POST /soroban/marketplace/list/build` - Build unsigned list transaction
-- `POST /soroban/marketplace/list/submit` - Submit signed list transaction
-- `POST /soroban/marketplace/buy/build` - Build unsigned buy transaction
-- `POST /soroban/marketplace/buy/submit` - Submit signed buy transaction
+---
+
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Marketplace — browse & filter NFTs |
+| `/my-nfts` | My NFTs — owned, listed, sold tabs |
+| `/mint-soroban` | Mint NFTs on Soroban (user pays gas) |
+| `/list-soroban` | List NFTs on Soroban marketplace |
+| `/buy-soroban` | Buy NFTs on Soroban marketplace |
+| `/royalties` | Claimable royalties & history |
+| `/analytics` | Volume charts & top sales |
+| `/nft/:contract/:tokenId` | NFT detail + buy |
+
+---
 
 ## License
 
-MIT License
-
-## Acknowledgments
-
-- Built on Stellar Soroban smart contracts
-- Uses Next.js 14 with App Router
-- Freighter wallet for Stellar connectivity
+MIT

@@ -18,10 +18,10 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 bg-silver-900/80 backdrop-blur-xl border-b border-silver-600/20">
+    <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-xl border-b border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2 shrink-0">
-          <span className="text-lg font-bold text-silver-50 hidden sm:block">NFT MINTER</span>
+          <span className="text-lg font-bold text-white hidden sm:block">NFT MINTER</span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
@@ -32,8 +32,8 @@ export function Navbar() {
               className={cn(
                 'px-4 py-2 rounded-lg text-sm font-medium transition-all',
                 pathname === link.href
-                  ? 'bg-slate-800/20 text-slate-400'
-                  : 'text-silver-50/60 hover:text-silver-50 hover:bg-silver-700/5'
+                  ? 'bg-slate-800 text-white'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-900'
               )}
             >
               {link.label}

@@ -112,7 +112,7 @@ export function BottomNav() {
       )}
 
       {/* Bottom bar */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-silver-900/95 backdrop-blur-xl border-t border-white/5"
+      <nav className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-silver-900/95 backdrop-blur-xl border-t border-slate-800"
         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
         <div className="flex items-center justify-around h-16">
@@ -126,7 +126,7 @@ export function BottomNav() {
                   'relative flex flex-col items-center justify-center gap-0.5 flex-1 h-full transition-colors',
                   tab.accent
                     ? isActive
-                      ? 'text-accent-400'
+                      ? 'text-white'
                       : 'text-accent-500/70'
                     : isActive
                     ? 'text-slate-400'
@@ -136,7 +136,7 @@ export function BottomNav() {
                 {tab.accent ? (
                   <div className={cn(
                     'w-10 h-10 rounded-xl flex items-center justify-center transition-colors',
-                    isActive ? 'bg-accent-500' : 'bg-accent-500/20'
+                    isActive ? 'bg-slate-700' : 'bg-slate-800'
                   )}>
                     {tab.icon}
                   </div>

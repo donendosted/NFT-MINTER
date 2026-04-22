@@ -7,7 +7,7 @@ import { BottomNav } from '@/components/layout/BottomNav';
 
 export const metadata: Metadata = {
   title: 'NFT MINTER',
-  description: 'NFT MINTER - Create and manage your NFT collection',
+  description: 'NFT MINTER - Create and manage your NFT collection on Stellar',
   icons: {
     icon: '/favicon.ico',
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-silver-950 text-silver-50 min-h-screen">
+      <body className="bg-black text-white min-h-screen">
         <QueryProvider>
           <Navbar />
           <main className="pb-20 lg:pb-0">{children}</main>
@@ -25,9 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             position="bottom-right"
             toastOptions={{
               style: {
-                background: '#181825',
+                background: '#000',
                 color: '#fff',
-                border: '1px solid #2a2a3e',
+                border: '1px solid #333',
               },
             }}
           />
