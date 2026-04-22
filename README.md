@@ -11,10 +11,14 @@
 ## Screenshots
 
 ### Mobile Responsive View
+<!-- Insert mobile screenshot here -->
+![Mobile View](https://res.cloudinary.com/ddp0nf4uv/image/upload/v1776074599/Screenshot_2026-04-13_151711_afcwvn.png)
 
-![Mobile View](https://images.unsplash.com/photo-1618000775193-194f42c5b84f)
-
----
+<p align="center">
+  <img src="https://res.cloudinary.com/ddp0nf4uv/image/upload/v1776074599/Screenshot_2026-04-13_151736_pls2qm.png" alt="Mobile View 1" width="30%"/>
+  <img src="https://res.cloudinary.com/ddp0nf4uv/image/upload/v1776074599/Screenshot_2026-04-13_151800_hvsxyp.png" alt="Mobile View 2" width="30%"/>
+  <img src="https://res.cloudinary.com/ddp0nf4uv/image/upload/v1776074600/Screenshot_2026-04-13_151830_vzv4no.png" alt="Mobile View 3" width="30%"/>
+</p>
 
 ## Deployment
 
@@ -25,12 +29,15 @@
 
 [![CI/CD Pipeline](https://github.com/donendosted/NFT-MINTER/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/donendosted/NFT-MINTER/actions)
 
+[![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://nft-minter-seven-gamma.vercel.app)
+[![Render](https://img.shields.io/badge/Backend-Render-blue?logo=render)](https://nft-minter-1.onrender.com)
+
 ---
 
 ## Features
 
 - **Browse NFTs** — Discover and filter NFTs listed on the marketplace
-- **Mint NFTs** — Create new NFTs with custom names and images
+- **Mint NFTs** — Create new NFTs with custom names and images (Unsplash templates)
 - **List for Sale** — Set a price and list your NFT on the marketplace
 - **Buy NFTs** — Purchase NFTs directly from other users
 - **Automatic Royalties** — 10% royalty on every resale, split between creator (50%), stakers (30%), and treasury (20%)
@@ -43,7 +50,6 @@
 ## Tech Stack
 
 ### Frontend
-
 - **Next.js 14** — React framework with App Router
 - **TypeScript** — Type-safe codebase
 - **Tailwind CSS** — Utility-first styling
@@ -53,13 +59,11 @@
 - **Framer Motion** — Smooth animations
 
 ### Backend
-
 - **Express.js** — REST API server
 - **Prisma** + **PostgreSQL** — Relational data (users, NFTs, listings, sales)
 - **JWT** — Authentication
 
 ### Blockchain
-
 - **Stellar Testnet** — Soroban smart contracts
 - **Freighter** — Wallet connection
 - **@stellar/stellar-sdk** — Backend Horizon/RPC integration
@@ -69,10 +73,9 @@
 ## Smart Contracts (Soroban)
 
 | Contract | Address (Testnet) |
-|----------|-------------------|
-| Payment Token | `CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC` |
-| RoyaltyPool | `CA32HYDWNV25UIQK5VK5CCWSITNA3LQ4FSO7TCSRAPG22ZEB5NMDKYW6` |
-| NFTCollection | `CCJBHSRDMMTLQ67RL2LH2RWHGQYUN5MKYBM7R43LYGIIIBXZ5NTTF2Z2` |
+|---|---|
+| NFT Collection | `CCJBHSRDMMTLQ67RL2LH2RWHGQYUN5MKYBM7R43LYGIIIBXZ5NTTF2Z2` |
+| Royalty Pool | `CA32HYDWNV25UIQK5VK5CCWSITNA3LQ4FSO7TCSRAPG22ZEB5NMDKYW6` |
 | Marketplace | `CATJUTMPLDEQY323QONFOZRTRQHLTEH5RTN52JUICTD52AT2TQD6JDYD` |
 
 ### User-Pays-Gas Model
@@ -91,7 +94,7 @@ This ensures users have full control over their transactions and gas spending.
 ### Royalty Split (10% of each sale)
 
 | Recipient | Share |
-|-----------|-------|
+|---|---|
 | Creator | 50% |
 | Stakers | 30% |
 | Treasury | 20% |
@@ -113,7 +116,7 @@ postgresql/        PostgreSQL — users, NFTs, listings, sales
 ### Prerequisites
 
 - Node.js 18+
-- PostgreSQL (Neon/Render) or local Postgres
+- PostgreSQL (Render) or local Postgres
 - Freighter wallet (browser extension)
 
 ### Backend Setup
@@ -140,22 +143,19 @@ npm run dev
 ### Environment Variables
 
 **Backend (`backend/.env`):**
-
 ```
 DATABASE_URL=           # PostgreSQL connection string
 JWT_SECRET=           # Your JWT secret
 STELLAR_HORIZON_URL=https://horizon-testnet.stellar.org
 STELLAR_RPC_URL=https://soroban-testnet.stellar.org
-NFT_COLLECTION_ID=    # Your NFT Collection contract ID
-MARKETPLACE_ID=     # Your Marketplace contract ID
-ROYALTY_POOL_ID=    # Your Royalty Pool contract ID
-PAYMENT_TOKEN_ID=   # USDC or your token
+NFT_COLLECTION_ID=CCJBHSRDMMTLQ67RL2LH2RWHGQYUN5MKYBM7R43LYGIIIBXZ5NTTF2Z2
+MARKETPLACE_ID=CATJUTMPLDEQY323QONFOZRTRQHLTEH5RTN52JUICTD52AT2TQD6JDYD
+ROYALTY_POOL_ID=CA32HYDWNV25UIQK5VK5CCWSITNA3LQ4FSO7TCSRAPG22ZEB5NMDKYW6
 ```
 
 **Frontend (`frontend/.env.local`):**
-
 ```
-NEXT_PUBLIC_API_URL=https://your-backend-url.onrender.com
+NEXT_PUBLIC_API_URL=https://your-backend.onrender.com
 NEXT_PUBLIC_NETWORK=testnet
 ```
 
@@ -164,7 +164,7 @@ NEXT_PUBLIC_NETWORK=testnet
 ## API Routes
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
+|---|---|---|
 | GET | `/nfts` | List all NFTs (filterable) |
 | GET | `/nfts/owner/:address` | Get NFTs by owner |
 | GET | `/nfts/:contract/:tokenId` | Get NFT details |
@@ -175,7 +175,10 @@ NEXT_PUBLIC_NETWORK=testnet
 | DELETE | `/listings/:id` | Cancel a listing |
 | GET | `/sales` | Recent sales |
 | GET | `/royalties/:address` | Claimable royalties |
+| GET | `/royalties/history/:address` | Royalty history |
+| POST | `/royalties/claim` | Claim royalties |
 | GET | `/analytics/volume` | Volume analytics |
+| GET | `/analytics/top-nfts` | Top selling NFTs |
 | GET | `/analytics/stats` | Market statistics |
 
 ---
@@ -183,10 +186,12 @@ NEXT_PUBLIC_NETWORK=testnet
 ## Pages
 
 | Route | Description |
-|-------|-------------|
+|---|---|
 | `/` | Marketplace — browse & filter NFTs |
 | `/my-nfts` | My NFTs — owned, listed, sold tabs |
+| `/mint` | Mint new NFTs with templates |
 | `/mint-soroban` | Mint NFTs on Soroban (user pays gas) |
+| `/list` | List an NFT for sale |
 | `/list-soroban` | List NFTs on Soroban marketplace |
 | `/buy-soroban` | Buy NFTs on Soroban marketplace |
 | `/royalties` | Claimable royalties & history |
