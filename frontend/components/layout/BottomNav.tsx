@@ -1,11 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-const navGroups = [
+const navItems = [
   {
     href: '/',
     label: 'Market',
@@ -16,11 +15,8 @@ const navGroups = [
     ),
   },
   {
-    group: [
-      { href: '/my-nfts', label: 'My NFTs' },
-      { href: '/list-soroban', label: 'List' },
-    ],
-    label: 'My NFTs',
+    href: '/my-nfts',
+    label: 'NFTs',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -38,10 +34,16 @@ const navGroups = [
     accent: true,
   },
   {
-    group: [
-      { href: '/royalties', label: 'Royalties' },
-      { href: '/analytics', label: 'Analytics' },
-    ],
+    href: '/list-soroban',
+    label: 'Sell',
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+      </svg>
+    ),
+  },
+  {
+    href: '/manage',
     label: 'Manage',
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -52,80 +54,49 @@ const navGroups = [
   },
 ];
 
-function MobileTab({ item }: { item: typeof navGroups[0] }) {
-  const pathname = usePathname();
-  const [showDropdown, setShowDropdown] = useState(false);
-
-  const isActive = item.href
-    ? pathname === item.href
-    : item.group?.some((l) => pathname === l.href);
-
-  const hasDropdown = !!item.group;
-
-  return (
-    <div className="relative">
-      <button
-        onClick={() => hasDropdown && setShowDropdown((v) => !v)}
-        className={cn(
-          'relative flex flex-col items-center justify-center gap-0.5 flex-1 h-full transition-colors',
-          item.accent
-            ? isActive
-              ? 'text-white'
-              : 'text-accent-500/70'
-            : isActive
-            ? 'text-slate-400'
-            : 'text-silver-50/40'
-        )}
-      >
-        {item.accent ? (
-          <div className={cn(
-            'w-10 h-10 rounded-xl flex items-center justify-center transition-colors',
-            isActive ? 'bg-slate-700' : 'bg-slate-800'
-          )}>
-            {item.icon}
-          </div>
-        ) : (
-          item.icon
-        )}
-        <span className="text-[10px] font-medium">{item.label}</span>
-        {isActive && !item.accent && (
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-slate-700 rounded-full" />
-        )}
-      </button>
-
-      {hasDropdown && showDropdown && (
-        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-32 bg-slate-900 border border-slate-700 rounded-xl shadow-xl overflow-hidden">
-          {item.group?.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setShowDropdown(false)}
-              className={cn(
-                'block px-4 py-2.5 text-sm font-medium transition-colors',
-                pathname === link.href
-                  ? 'bg-slate-800 text-white'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
 export function BottomNav() {
+  const pathname = usePathname();
+
   return (
     <nav
       className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-silver-900/95 backdrop-blur-xl border-t border-slate-800"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       <div className="flex items-center justify-around h-16">
-        {navGroups.map((item, i) => (
-          <MobileTab key={i} item={item} />
-        ))}
+        {navItems.map((item) => {
+          const isActive = pathname === item.href;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                'relative flex flex-col items-center justify-center gap-0.5 flex-1 h-full transition-colors',
+                item.accent
+                  ? isActive
+                    ? 'text-white'
+                    : 'text-accent-500/70'
+                  : isActive
+                  ? 'text-slate-400'
+                  : 'text-silver-50/40'
+              )}
+            >
+              {item.accent ? (
+                <div className={cn(
+                  'w-10 h-10 rounded-xl flex items-center justify-center transition-colors',
+                  isActive ? 'bg-slate-700' : 'bg-slate-800'
+                )}>
+                  {item.icon}
+                </div>
+              ) : (
+                item.icon
+              )}
+              <span className="text-[10px] font-medium">{item.label}</span>
+              {isActive && !item.accent && (
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-slate-700 rounded-full" />
+              )}
+            </Link>
+          );
+        })}
       </div>
     </nav>
   );
