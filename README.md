@@ -1,24 +1,12 @@
 # NFT MINTER
 
-> Decentralized NFT marketplace on the Stellar network with automatic royalty splitting for creators.
+> A platform to mint NFT and sell them.
 
 **Live Demo:** https://nft-minter-seven-gamma.vercel.app
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/donendosted/NFT-MINTER)
 
 ---
-
-## Screenshots
-
-### Mobile Responsive View
-<!-- Insert mobile screenshot here -->
-![Mobile View](https://res.cloudinary.com/ddp0nf4uv/image/upload/v1776074599/Screenshot_2026-04-13_151711_afcwvn.png)
-
-<p align="center">
-  <img src="https://res.cloudinary.com/ddp0nf4uv/image/upload/v1776074599/Screenshot_2026-04-13_151736_pls2qm.png" alt="Mobile View 1" width="30%"/>
-  <img src="https://res.cloudinary.com/ddp0nf4uv/image/upload/v1776074599/Screenshot_2026-04-13_151800_hvsxyp.png" alt="Mobile View 2" width="30%"/>
-  <img src="https://res.cloudinary.com/ddp0nf4uv/image/upload/v1776074600/Screenshot_2026-04-13_151830_vzv4no.png" alt="Mobile View 3" width="30%"/>
-</p>
 
 ## Deployment
 
