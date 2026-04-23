@@ -2,7 +2,7 @@
 
 > A platform to mint NFT and sell them.
 
-**Live Demo:** https://nft-minter-seven-gamma.vercel.app
+**Live Demo:** https://nft-minter-dos.vercel.app
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/donendosted/NFT-MINTER)
 
@@ -17,7 +17,7 @@
 
 [![CI/CD Pipeline](https://github.com/donendosted/NFT-MINTER/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/donendosted/NFT-MINTER/actions)
 
-[![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://nft-minter-seven-gamma.vercel.app)
+[![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://nft-minter-dos.vercel.app)
 [![Render](https://img.shields.io/badge/Backend-Render-blue?logo=render)](https://nft-minter-1.onrender.com)
 
 ---
@@ -156,8 +156,8 @@ NEXT_PUBLIC_NETWORK=testnet
 | GET | `/nfts` | List all NFTs (filterable) |
 | GET | `/nfts/owner/:address` | Get NFTs by owner |
 | GET | `/nfts/:contract/:tokenId` | Get NFT details |
-| POST | `/blockchain/mint/nft/build` | Build mint transaction (user signs) |
-| POST | `/blockchain/mint/nft/submit` | Submit signed mint transaction |
+| POST | `/soroban/mint/build` | Build mint transaction (user signs) |
+| POST | `/soroban/mint/submit` | Submit signed mint transaction |
 | GET | `/listings` | List active listings |
 | POST | `/listings` | Create a listing |
 | DELETE | `/listings/:id` | Cancel a listing |
